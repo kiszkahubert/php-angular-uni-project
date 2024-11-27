@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from "./shared/navbar/navbar.component";
+import { MainCombinedComponent } from "./mainPage/main-combined/main-combined.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NavbarComponent],
+  imports: [MainCombinedComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
