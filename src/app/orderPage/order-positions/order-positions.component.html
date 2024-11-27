@@ -1,0 +1,80 @@
+<div class="content">
+    <h1 class="descriptor">Kebaby</h1>
+    <div class="row">
+      @for (item of menuItems | filter: 'kebab'; track item.type) {
+        <div class="column">
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.description }}</p>
+            <p>{{ item.price | currency:'PLN':'symbol':'1.2-2' }}</p>
+            <button class="addButton" (click)="openForm(item)"><span>&#43;</span></button>
+          </div>
+      }
+    </div>
+    <h1 class="descriptor">Burgery</h1>
+    <div class="row">
+      @for (item of menuItems | filter: 'burger'; track item.type) {
+        <div class="column">
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.description }}</p>
+            <p>{{ item.price | currency:'PLN':'symbol':'1.2-2' }}</p>
+            <button class="addButton" (click)="openForm(item)"><span>&#43;</span></button>
+          </div>
+      }
+    </div>
+    <h1 class="descriptor">Pizze</h1>
+    <div class="row">
+      @for (item of menuItems | filter: 'pizza'; track item.type) {
+        <div class="column">
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.description }}</p>
+            <p>{{ item.price | currency:'PLN':'symbol':'1.2-2' }}</p>
+            <button class="addButton" (click)="openForm(item)"><span>&#43;</span></button>
+          </div>
+      }
+    </div>
+    <h1 class="descriptor">Sałatki</h1>
+    <div class="row">
+      @for (item of menuItems | filter: 'salad'; track item.type) {
+        <div class="column">
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.description }}</p>
+            <p>{{ item.price | currency:'PLN':'symbol':'1.2-2' }}</p>
+            <button class="addButton" (click)="openForm(item)"><span>&#43;</span></button>
+          </div>
+      }
+    </div>
+    @if(selectedItem){
+        <div class="dialog">
+            <div class="dialog-content">
+              <span class="close" (click)="closeForm()">&times;</span>
+              <h3>Wybierz sos do Kebaba</h3>
+              @if(selectedItem.sauces){
+                <div>
+                  @for (sauce of selectedItem.sauces; track $index) {
+                    <label>
+                      <input type="radio" name="sos" [value]="sauce" [(ngModel)]="selectedSauce">
+                      {{ sauce }}
+                    </label>
+                  }
+                </div>
+              }
+              <h3>Wybierz mięso do Kebaba</h3>
+              @if(selectedItem.meats){
+                <div>
+                  @for (meat of selectedItem.meats; track $index) {
+                    <label>
+                      <input type="radio" name="mieso" [value]="meat" [(ngModel)]="selectedMeat">
+                      {{ meat }}
+                    </label>
+                  }
+                </div>
+              }
+              <label>
+                Ilość sztuk:
+                <input type="number" [(ngModel)]="quantity" min="1" max="10">
+              </label>
+              <button (click)="saveOrder()">Dodaj do zamówienia</button>
+            </div>
+          </div>
+    }
+  </div>
