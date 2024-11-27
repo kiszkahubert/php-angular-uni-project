@@ -1,0 +1,19 @@
+<div id="login-box">
+    <h2>Zarejestruj się!</h2>
+    <form th:action="@{/register/save}" th:object="${user}" method="post">
+        <div class="user-box">
+            <input type="text" name="email" id="email" th:field="*{email}" required pattern="^[a-zA-Z0-9.]+[@][a-zA-Z0-9]+[.][a-zA-Z]{1,8}$" title="Podaj adres email w formacie abcd@efgh.ijk">
+            <label>Adres e-mail</label>
+            <p th:errors = "*{email}" class="text-danger" th:if="${#fields.hasErrors('email')}"></p>
+        </div>
+        <div class="user-box">
+            <input type="password" name="password" id="password" th:field="*{password}" required >
+            <label for="password">Hasło</label>
+            <p th:errors = "*{passord}" class="text-danger" th:if="${#fields.hasErrors('password')}"></p>
+        </div>
+        <input type="submit" value="Zarejestruj">
+        <div class="user-login">
+            <a th:href="@{/login}">Zaloguj się do swojego konta</a>
+        </div>
+    </form>
+</div>

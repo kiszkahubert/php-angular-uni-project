@@ -1,0 +1,33 @@
+<div id="login-box">
+    <h2>Aby kontynuować, zaloguj się</h2>
+    <form (ngSubmit)="onSubmit()">
+        <div class="user-box">
+            <input 
+                type="text" 
+                name="username"
+                id="username"
+                [(ngModel)]="username"
+                required
+                pattern="^[a-zA-Z0-9.]+[@][a-zA-Z0-9]+[.][a-zA-Z]{1,8}$">
+            <label for="username">Adres e-mail</label>
+        </div>
+        <div class="user-box">
+            <input 
+                type="password"
+                name="password"
+                id="password"
+                [(ngModel)]="password"
+                required>
+            <label for="password">Hasło</label>
+        </div>
+        <input type="submit" value="Login">
+        @if(loginError){
+            <div class="error-message">
+                Niepoprawny email lub hasło. Spróbuj ponownie.
+            </div>
+        }
+        <div class="user-login">
+            <p><a href="/register">Stwórz nowe konto</a></p>
+        </div>
+    </form>
+</div>
