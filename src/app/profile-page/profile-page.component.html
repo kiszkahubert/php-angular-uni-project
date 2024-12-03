@@ -1,1 +1,22 @@
-<p>profile-page works!</p>
+<div class="content">
+    <h1>Twoja lista zamówień</h1>
+    <div>
+        <ul>
+            @for (order of Orders; track $index) {
+                <li class="styled-li" >
+                    <h3>{{ order.item }}</h3>
+                    <p>Ilość: {{ order.quantity }}</p>
+                    <p>Całkowita cena: {{ order.totalPrice }}</p>
+                    <p>Data zamówienia: {{ order.orderDate }}</p>
+                    <p>Data dostawy: {{ order.deliveryDate }}</p>
+                    @if(order.sauce){
+                        <p>Sos: {{ order.sauce }}</p>
+                    }
+                    @if(order.meat){
+                        <p>Mięso: {{ order.meat }}</p>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+</div>
