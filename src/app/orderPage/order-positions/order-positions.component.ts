@@ -3,6 +3,7 @@ import { FilterPipe } from './filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MenuService } from '../../services/MenuService';
+import { NavbarComponent } from "../../shared/navbar/navbar.component";
 
 interface MenuItem{
   name: string;
@@ -16,7 +17,7 @@ interface MenuItem{
 @Component({
   selector: 'app-order-positions',
   standalone: true,
-  imports: [FilterPipe, FormsModule, CommonModule],
+  imports: [FilterPipe, FormsModule, CommonModule, NavbarComponent],
   templateUrl: './order-positions.component.html',
   styleUrl: './order-positions.component.css'
 })

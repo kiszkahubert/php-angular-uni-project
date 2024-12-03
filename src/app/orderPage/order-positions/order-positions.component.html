@@ -1,7 +1,8 @@
+<app-navbar></app-navbar>
 <div class="content">
     <h1 class="descriptor">Kebaby</h1>
     <div class="row">
-      @for (item of menuItems | filter: 'kebab'; track item.type) {
+      @for (item of menuItems | filter: 'kebab'; track $index) {
         <div class="column">
             <h3>{{ item.name }}</h3>
             <p>{{ item.description }}</p>
@@ -12,7 +13,7 @@
     </div>
     <h1 class="descriptor">Burgery</h1>
     <div class="row">
-      @for (item of menuItems | filter: 'burger'; track item.type) {
+      @for (item of menuItems | filter: 'burger'; track $index) {
         <div class="column">
             <h3>{{ item.name }}</h3>
             <p>{{ item.description }}</p>
@@ -23,7 +24,7 @@
     </div>
     <h1 class="descriptor">Pizze</h1>
     <div class="row">
-      @for (item of menuItems | filter: 'pizza'; track item.type) {
+      @for (item of menuItems | filter: 'pizza'; track $index) {
         <div class="column">
             <h3>{{ item.name }}</h3>
             <p>{{ item.description }}</p>
@@ -34,7 +35,7 @@
     </div>
     <h1 class="descriptor">Sałatki</h1>
     <div class="row">
-      @for (item of menuItems | filter: 'salad'; track item.type) {
+      @for (item of menuItems | filter: 'salad'; track $index) {
         <div class="column">
             <h3>{{ item.name }}</h3>
             <p>{{ item.description }}</p>
@@ -55,6 +56,7 @@
                       <input type="radio" name="sos" [value]="sauce" [(ngModel)]="selectedSauce">
                       {{ sauce }}
                     </label>
+                    <br>
                   }
                 </div>
               }
@@ -62,7 +64,7 @@
               @if(selectedItem.meats){
                 <div>
                   @for (meat of selectedItem.meats; track $index) {
-                    <label>
+                    <label class="spaced">
                       <input type="radio" name="mieso" [value]="meat" [(ngModel)]="selectedMeat">
                       {{ meat }}
                     </label>
@@ -73,8 +75,9 @@
                 Ilość sztuk:
                 <input type="number" [(ngModel)]="quantity" min="1" max="10">
               </label>
-              <button (click)="saveOrder()">Dodaj do zamówienia</button>
+              <br>
+              <button class="order-bttn" (click)="saveOrder()">Dodaj do zamówienia</button>
             </div>
           </div>
     }
-  </div>
+</div>
