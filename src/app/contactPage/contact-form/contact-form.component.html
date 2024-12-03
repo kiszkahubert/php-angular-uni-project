@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <h1>Napisz lub zadzwoń do nas!</h1>
+    <h3>LUBLIN UL. NADBYSTRZYCKA 36B</h3>
+    <h3>+48 321-654-978</h3><br>
+    <p>
+        Jeżeli macie Państwo pytania, zapraszamy do kontaktu telefonicznego z lokalem pod podanym wyżej numerem telefonu
+        lub do wysłania zapytań za pomocą poniższego formularza kontaktowego.
+    </p>
+    <div>
+        <form onsubmit="saveDataToStorage(event);" th:action="@{/api/endpoint}" method="post">
+            <input type="text" name="imie" placeholder="Imię" class="firstrow firstel" id="imie" required pattern="^[a-zA-Z]{3,20}" title="Podaj tylko litery" [(ngModel)]="name">
+            <input type="text" name="email" placeholder="Adres email" class="firstrow" id="email" required pattern="^[a-zA-Z0-9.]+[@][a-zA-Z0-9]+[.][a-zA-Z]{1,8}$" title="Podaj adres email w formacie abcd@abcd.abcd" [(ngModel)]="email">
+            <input type="text" name="telefon" placeholder="Numer telefonu" id="telefon" required pattern="\d{9}" title="Podaj numer w formacie 123456789" [(ngModel)]="phoneNumber"><br>
+            <input type="text" name="temat" placeholder="Temat" id="temat" required pattern="[a-zA-Z0-9 ]{1,30}$" title="Tytuł nie może być pusty i przekraczać 30 znaków" [(ngModel)]="topic"><br>
+            <textarea name="wiadomosc" id="wiadomosc" cols="50" rows="6" placeholder="Wiadomość" style="resize: none" required maxlength="200" title="Treść nie może być pusta i przekraczać 200 znaków" [(ngModel)]="message"></textarea>
+            <input type="submit" class="send-message" value="WYŚLIJ WIADOMOŚĆ" (click)="onSubmit()">
+        </form>
+    </div>
+</div>

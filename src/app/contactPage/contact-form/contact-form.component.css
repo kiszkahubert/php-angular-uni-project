@@ -1,0 +1,85 @@
+.navbar{
+    height: auto;
+    align-items: center;
+    font-size: 16px;
+}
+.navbar-img{
+    height: 70px;
+    width: auto;
+}
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+h3,p{
+    text-align: center;
+}
+p{
+    color: lightgray;
+}
+.container{
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 90px;
+    padding: 0 200px 0 200px;
+}
+.firstrow{
+    width: 49%;
+}
+input{
+    margin: 5px 0 5px 0;
+    height: 50px;
+    width: 100%;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+textarea{
+    width: 100%;
+    padding: 10px 0 0 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+.firstel{
+    margin-right: 13px;
+}
+.send-message{
+    font-weight: bold;
+    width: 230px;
+    height: 40px;
+    border: none;
+    background-color: black;
+    color: white;
+    display: block;
+    margin: auto;
+}
+@media (max-width: 1399px) {
+    .container{
+        padding: 0 20px 0 20px;
+    }
+    .firstrow{
+        width: 100%;
+    }
+}
+@media (max-width: 1119px) {
+    .container{
+        padding: 0 20px 0 20px;
+    }
+    .firstrow{
+        width: 100%;
+    }
+}
+@media (max-width: 991px) {
+    .container{
+        padding: 0 20px 0 20px;
+    }
+    .firstrow{
+        width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .container{
+        padding: 0 20px 0 20px;
+    }
+    .firstrow{
+        width: 100%;
+    }
+}
