@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FilterPipe } from './filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -21,7 +21,7 @@ interface MenuItem{
   templateUrl: './order-positions.component.html',
   styleUrl: './order-positions.component.css'
 })
-export class OrderPositionsComponent {
+export class OrderPositionsComponent implements OnInit{
   menuItems: MenuItem[] = [];
   selectedItem: MenuItem | null = null;
   selectedSauce: string | null = null;

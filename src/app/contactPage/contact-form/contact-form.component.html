@@ -8,7 +8,7 @@
         lub do wysłania zapytań za pomocą poniższego formularza kontaktowego.
     </p>
     <div>
-        <form onsubmit="saveDataToStorage(event);" th:action="@{/api/endpoint}" method="post">
+        <form>
             <input type="text" name="imie" placeholder="Imię" class="firstrow firstel" id="imie" required pattern="^[a-zA-Z]{3,20}" title="Podaj tylko litery" [(ngModel)]="name">
             <input type="text" name="email" placeholder="Adres email" class="firstrow" id="email" required pattern="^[a-zA-Z0-9.]+[@][a-zA-Z0-9]+[.][a-zA-Z]{1,8}$" title="Podaj adres email w formacie abcd@abcd.abcd" [(ngModel)]="email">
             <input type="text" name="telefon" placeholder="Numer telefonu" id="telefon" required pattern="\d{9}" title="Podaj numer w formacie 123456789" [(ngModel)]="phoneNumber"><br>
