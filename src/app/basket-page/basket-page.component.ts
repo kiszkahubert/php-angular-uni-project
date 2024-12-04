@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavbarComponent } from "../shared/navbar/navbar.component";
 
 interface Order{
   item: string,
@@ -11,7 +12,7 @@ interface Order{
 @Component({
   selector: 'app-basket-page',
   standalone: true,
-  imports: [],
+  imports: [NavbarComponent],
   templateUrl: './basket-page.component.html',
   styleUrl: './basket-page.component.css'
 })
