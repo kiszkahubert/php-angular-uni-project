@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavbarComponent } from "../shared/navbar/navbar.component";
 
 interface Order{
   item: string,
@@ -13,7 +14,7 @@ interface Order{
 @Component({
   selector: 'app-profile-page',
   standalone: true,
-  imports: [],
+  imports: [NavbarComponent],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.css'
 })
