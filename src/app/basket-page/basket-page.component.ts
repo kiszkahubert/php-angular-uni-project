@@ -27,6 +27,8 @@ export class BasketPageComponent implements OnInit{
         const orderData = localStorage.getItem(key);
         return orderData ? JSON.parse(orderData) : null;
       }).filter(order => order !== null) as Order[];
+    
+      console.log(this.orders)
     }
   }
 

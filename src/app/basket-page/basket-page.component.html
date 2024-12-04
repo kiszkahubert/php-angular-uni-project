@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="content">
-    @if(orderKeys.length !== 0){
+    @if(orderKeys.length === 0){
         <h1 id="napis" style="text-align: center;">Koszyk jest obecnie pusty</h1>
     } @else {
         <h1 style="text-align: center;">Twoje wybranme pozycje</h1>
@@ -12,6 +12,6 @@
                 <button (click)="removeOrder($index)">Usuń pozycję</button>
             </div>
         }
-        <button class="basket-request" (click)="saveOrders()"></button>
+        <button class="basket-request" (click)="saveOrders()"> Złóż zamówienie</button>
     }
 </div>

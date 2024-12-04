@@ -22,6 +22,7 @@
 .basket-request{
     display: block;
     margin: auto;
+    margin-bottom: 20px;
 }
 button:not(.navbar-toggler){
     border: none;
