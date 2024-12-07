@@ -2,7 +2,7 @@
 <div class="content">
     <h1 class="descriptor">Kebaby</h1>
     <div class="row">
-      @for (item of menuItems | filter: 'kebab'; track $index) {
+      @for (item of menuItems() | filter: 'kebab'; track $index) {
         <div class="column">
             <h3>{{ item.name }}</h3>
             <p>{{ item.description }}</p>
@@ -13,7 +13,7 @@
     </div>
     <h1 class="descriptor">Burgery</h1>
     <div class="row">
-      @for (item of menuItems | filter: 'burger'; track $index) {
+      @for (item of menuItems() | filter: 'burger'; track $index) {
         <div class="column">
             <h3>{{ item.name }}</h3>
             <p>{{ item.description }}</p>
@@ -24,7 +24,7 @@
     </div>
     <h1 class="descriptor">Pizze</h1>
     <div class="row">
-      @for (item of menuItems | filter: 'pizza'; track $index) {
+      @for (item of menuItems() | filter: 'pizza'; track $index) {
         <div class="column">
             <h3>{{ item.name }}</h3>
             <p>{{ item.description }}</p>
@@ -35,7 +35,7 @@
     </div>
     <h1 class="descriptor">Sałatki</h1>
     <div class="row">
-      @for (item of menuItems | filter: 'salad'; track $index) {
+      @for (item of menuItems() | filter: 'salad'; track $index) {
         <div class="column">
             <h3>{{ item.name }}</h3>
             <p>{{ item.description }}</p>
@@ -44,14 +44,14 @@
           </div>
       }
     </div>
-    @if(selectedItem){
+    @if(selectedItem()){
         <div class="dialog">
             <div class="dialog-content">
               <span class="close" (click)="closeForm()">&times;</span>
               <h3>Wybierz sos do Kebaba</h3>
-              @if(selectedItem.sauces){
+              @if(selectedItem()?.sauces){
                 <div>
-                  @for (sauce of selectedItem.sauces; track $index) {
+                  @for (sauce of selectedItem()?.sauces; track $index) {
                     <label>
                       <input type="radio" name="sos" [value]="sauce" [(ngModel)]="selectedSauce">
                       {{ sauce }}
@@ -61,9 +61,9 @@
                 </div>
               }
               <h3>Wybierz mięso do Kebaba</h3>
-              @if(selectedItem.meats){
+              @if(selectedItem()?.meats){
                 <div>
-                  @for (meat of selectedItem.meats; track $index) {
+                  @for (meat of selectedItem()?.meats; track $index) {
                     <label class="spaced">
                       <input type="radio" name="mieso" [value]="meat" [(ngModel)]="selectedMeat">
                       {{ meat }}

@@ -4,7 +4,7 @@
         <h1 id="napis" style="text-align: center;">Koszyk jest obecnie pusty</h1>
     } @else {
         <h1 style="text-align: center;">Twoje wybranme pozycje</h1>
-        @for (order of orders; track $index) {
+        @for (order of orders(); track $index) {
             <div class="element">
                 <h3>{{ order.item }}</h3>
                 <p>Ilość sztuk: {{ order.quantity }}</p>

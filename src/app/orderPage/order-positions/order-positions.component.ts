@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FilterPipe } from './filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MenuService } from '../../services/MenuService';
 import { NavbarComponent } from "../../shared/navbar/navbar.component";
 
-interface MenuItem{
+interface MenuItem {
   name: string;
   description: string;
   price: number;
@@ -21,39 +21,40 @@ interface MenuItem{
   templateUrl: './order-positions.component.html',
   styleUrl: './order-positions.component.css'
 })
-export class OrderPositionsComponent implements OnInit{
-  menuItems: MenuItem[] = [];
-  selectedItem: MenuItem | null = null;
-  selectedSauce: string | null = null;
-  selectedMeat: string | null = null;
-  quantity: number = 1;
+export class OrderPositionsComponent implements OnInit {
+  menuItems = signal<MenuItem[]>([]);
+  selectedItem = signal<MenuItem | null>(null);
+  selectedSauce = signal<string | null>(null);
+  selectedMeat = signal<string | null>(null);
+  quantity = signal<number>(1);
 
-  constructor(private menuService: MenuService){}
-  ngOnInit(): void{
+  constructor(private menuService: MenuService) {}
+
+  ngOnInit(): void {
     this.menuService.getMenuItems().subscribe(
-      items => this.menuItems = items
-    )
+      items => this.menuItems.set(items)
+    );
   }
 
   openForm(item: MenuItem): void {
-    this.selectedItem = item;
-    this.selectedSauce = null;
-    this.selectedMeat = null;
-    this.quantity = 1;
+    this.selectedItem.set(item);
+    this.selectedSauce.set(null);
+    this.selectedMeat.set(null);
+    this.quantity.set(1);
   }
 
   saveOrder(): void {
-    if (!this.selectedItem || (this.selectedItem.type === 'kebab' && (!this.selectedSauce || !this.selectedMeat))) {
+    if (!this.selectedItem() || (this.selectedItem()!.type === 'kebab' && (!this.selectedSauce() || !this.selectedMeat()))) {
       return;
     }
 
     const positionOrder = parseInt(localStorage.getItem('positionOrder') || '1');
     const order = {
-      item: this.selectedItem.name,
-      sauce: this.selectedSauce,
-      meat: this.selectedMeat,
-      quantity: this.quantity,
-      totalPrice: this.selectedItem.price * this.quantity
+      item: this.selectedItem()!.name,
+      sauce: this.selectedSauce(),
+      meat: this.selectedMeat(),
+      quantity: this.quantity(),
+      totalPrice: this.selectedItem()!.price * this.quantity()
     };
 
     localStorage.setItem(`order${positionOrder}`, JSON.stringify(order));
@@ -63,6 +64,6 @@ export class OrderPositionsComponent implements OnInit{
   }
 
   closeForm(): void {
-    this.selectedItem = null;
+    this.selectedItem.set(null);
   }
 }
