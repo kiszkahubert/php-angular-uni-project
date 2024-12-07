@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from "../shared/navbar/navbar.component";
+import { HttpClient } from '@angular/common/http';
 
 interface Order{
   item: string,
@@ -19,6 +20,7 @@ interface Order{
 export class BasketPageComponent implements OnInit{
   orderKeys: string[] = [];
   orders: Order[] = [];
+  constructor(private http: HttpClient) {}
   
   ngOnInit(): void {
     if(typeof window !== 'undefined' && localStorage){
@@ -39,6 +41,23 @@ export class BasketPageComponent implements OnInit{
   }
 
   saveOrders(){
-    //TODO implement when created API on backend:w
+    const userId = localStorage.getItem('userId');
+    const orderData = this.orders.map(order => ({
+      ...order,
+      user_id: userId
+    }))
+    this.http.post<{ message: string}>('http://localhost:8080/api/orders',orderData)
+      .subscribe({ 
+        next: (response) =>{
+          this.orders.forEach(element => {
+            const key = element.item;
+            localStorage.removeItem(key);
+          });
+          localStorage.removeItem('positionOrder');
+        },
+        error: (error) =>{
+          console.log(error)
+        }
+      })
   }
 }

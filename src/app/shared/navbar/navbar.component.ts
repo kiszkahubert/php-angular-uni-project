@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router'; 
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +9,23 @@ import { RouterModule } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  isAuthenticated(){
-    return false;
+  constructor(private router: Router){}
+
+  isAuthenticated(): boolean{
+    return !!localStorage.getItem('authToken');
+  }
+  navigateToProfile(): void{
+    if(this.isAuthenticated()){
+      this.router.navigate(['/profile']);
+    } else{
+      this.router.navigate(['/login'])
+    }
+  }
+  navigateToBasket(): void{
+    if(this.isAuthenticated()){
+      this.router.navigate(['/basket']);
+    } else{
+      this.router.navigate(['/login'])
+    }
   }
 }
