@@ -54,8 +54,8 @@ export class BasketPageComponent implements OnInit {
     this.http.post<{ message: string }>('http://localhost:8080/api/orders', orderData)
       .subscribe({
         next: (response) => {
-          this.orders().forEach(order => {
-            localStorage.removeItem(order.item);
+          this.orderKeys().forEach(key => {
+            localStorage.removeItem(key);
           });
           localStorage.removeItem('positionOrder');
           this.orders.set([]);
