@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from "../shared/navbar/navbar.component";
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 interface Order{
   item: string,
   sauce?: string,
   meat?: string,
   quantity: number,
-  totalPrice: number,
-  orderDate: string,
-  deliveryDate: string
+  totalprice: number,
+  orderdate: string,
 }
 
 @Component({
@@ -20,9 +20,25 @@ interface Order{
 })
 export class ProfilePageComponent implements OnInit{
   Orders?: Order[];
+  constructor(private http: HttpClient){}
 
   ngOnInit(): void {
-    //TODO make call to API 
+    if(typeof window !== 'undefined'){
+      const userId = localStorage.getItem('userId');
+      if(userId){
+        const params = new HttpParams().set('userkey', userId);
+        this.http.get<{ orders: Order[] }>('http://localhost:8080/api/orders', { params })
+          .subscribe({
+            next: (response) => {
+              this.Orders = response.orders.map(order => ({
+                ...order
+              }));
+            },
+            error: (error) => {
+              console.log(error)
+            }
+          });
+      }
+    }
   }
-
 }

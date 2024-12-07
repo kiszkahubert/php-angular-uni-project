@@ -7,9 +7,8 @@
                 <li class="styled-li" >
                     <h3>{{ order.item }}</h3>
                     <p>Ilość: {{ order.quantity }}</p>
-                    <p>Całkowita cena: {{ order.totalPrice }}</p>
-                    <p>Data zamówienia: {{ order.orderDate }}</p>
-                    <p>Data dostawy: {{ order.deliveryDate }}</p>
+                    <p>Całkowita cena: {{ order.totalprice }} PLN</p>
+                    <p>Data zamówienia: {{ order.orderdate }}</p>
                     @if(order.sauce){
                         <p>Sos: {{ order.sauce }}</p>
                     }
