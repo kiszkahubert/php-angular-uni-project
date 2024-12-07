@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from "../../shared/navbar/navbar.component";
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import e from 'express';
 
 @Component({
   selector: 'app-contact-form',
@@ -12,12 +14,31 @@ import { NavbarComponent } from "../../shared/navbar/navbar.component";
 export class ContactFormComponent {
   name!: string;
   email!: string;
-  title!: string;
   phoneNumber!: string;
   topic!: string;
   message!: string;
 
+  constructor(private http: HttpClient){}
+
   onSubmit(){
-    //HERE SHOULD BE IMPLEMENTED SENDING POST REQUEST TO ENDPOINT WHICH I DONT HAVE YET
+    this.http.post<{ message: string }>('http://localhost:8080/api/contact',{
+      name: this.name,
+      email: this.email,
+      phone_number: this.phoneNumber,
+      topic: this.topic,
+      message: this.message
+    })    
+    .subscribe({
+      next: (response) =>{
+        this.name = '';
+        this.email = '';
+        this.phoneNumber = '';
+        this.topic = '';
+        this.message = '';
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
   }
 }
