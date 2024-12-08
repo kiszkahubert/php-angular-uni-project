@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MenuService } from '../../services/MenuService';
 import { NavbarComponent } from "../../shared/navbar/navbar.component";
+import { Title } from '@angular/platform-browser';
 
 interface MenuItem {
   name: string;
@@ -28,7 +29,9 @@ export class OrderPositionsComponent implements OnInit {
   selectedMeat = signal<string | null>(null);
   quantity = signal<number>(1);
 
-  constructor(private menuService: MenuService) {}
+  constructor(private menuService: MenuService, private titleService: Title){
+    this.titleService.setTitle("Zamów coś!");
+  }
 
   ngOnInit(): void {
     this.menuService.getMenuItems().subscribe(

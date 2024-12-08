@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from "../../shared/navbar/navbar.component";
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import e from 'express';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contact-form',
@@ -18,7 +18,9 @@ export class ContactFormComponent {
   topic!: string;
   message!: string;
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient, private titleService: Title){
+    this.titleService.setTitle("Skontaktuj się!");
+  }
 
   onSubmit(){
     this.http.post<{ message: string }>('http://apache-php:8080/api/contact',{

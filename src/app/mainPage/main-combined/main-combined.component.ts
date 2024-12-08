@@ -4,6 +4,7 @@ import { IntroductionContentComponent } from "../introduction-content/introducti
 import { ImageSliderComponent } from "../image-slider/image-slider.component";
 import { MapLocationComponent } from "../map-location/map-location.component";
 import { FooterComponent } from "../footer/footer.component";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-main-combined',
@@ -13,5 +14,7 @@ import { FooterComponent } from "../footer/footer.component";
   styleUrl: './main-combined.component.css'
 })
 export class MainCombinedComponent {
-
+  constructor(private titleService: Title){
+    this.titleService.setTitle("Strona główna");
+  }
 }

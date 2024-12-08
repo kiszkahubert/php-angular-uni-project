@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from "../shared/navbar/navbar.component";
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 
 interface Order{
   item: string,
@@ -20,7 +21,9 @@ interface Order{
 })
 export class ProfilePageComponent implements OnInit{
   Orders?: Order[];
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient, private titleService: Title){
+    this.titleService.setTitle("Twój profil");
+  }
 
   ngOnInit(): void {
     if(typeof window !== 'undefined'){

@@ -1,6 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { NavbarComponent } from "../shared/navbar/navbar.component";
 import { HttpClient } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 
 interface Order {
   item: string;
@@ -21,8 +22,9 @@ export class BasketPageComponent implements OnInit {
   orderKeys = signal<string[]>([]);
   orders = signal<Order[]>([]);
 
-  constructor(private http: HttpClient) {}
-
+  constructor(private http: HttpClient, private titleService: Title){
+    this.titleService.setTitle("Koszyk");
+  }
   ngOnInit(): void {
     if (typeof window !== 'undefined' && localStorage) {
       const orderKeys = Object.keys(localStorage).filter(key => key.startsWith('order'));
