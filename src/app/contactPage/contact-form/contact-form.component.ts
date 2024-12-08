@@ -21,7 +21,7 @@ export class ContactFormComponent {
   constructor(private http: HttpClient){}
 
   onSubmit(){
-    this.http.post<{ message: string }>('http://localhost:8080/api/contact',{
+    this.http.post<{ message: string }>('http://apache-php:8080/api/contact',{
       name: this.name,
       email: this.email,
       phone_number: this.phoneNumber,

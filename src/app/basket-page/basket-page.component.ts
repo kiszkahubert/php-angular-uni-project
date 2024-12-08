@@ -51,7 +51,7 @@ export class BasketPageComponent implements OnInit {
       userkey: userId
     }));
     
-    this.http.post<{ message: string }>('http://localhost:8080/api/orders', orderData)
+    this.http.post<{ message: string }>('http://apache-php:8080/api/orders', orderData)
       .subscribe({
         next: (response) => {
           this.orderKeys().forEach(key => {
