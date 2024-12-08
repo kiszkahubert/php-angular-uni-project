@@ -12,7 +12,7 @@
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
-    width: 300px;
+    width: 450px;
     padding: 20px;
 }
 .error-message{
@@ -28,6 +28,8 @@ p{
     text-align: center;
     color: #333;
     margin-bottom: 30px;
+    font-size: 30px;
+    color: #007BFF;
 }
 .user-box {
     position: relative;

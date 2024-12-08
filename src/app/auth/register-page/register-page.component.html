@@ -11,9 +11,6 @@
                 pattern="^[a-zA-Z0-9.]+[@][a-zA-Z0-9]+[.][a-zA-Z]{1,8}$" 
                 title="Podaj adres email w formacie abcd@efgh.ijk">
             <label>Adres e-mail</label>
-            @if(emailExists){
-                <p class="text-danger"></p>
-            }
         </div>
         <div class="user-box">
             <input
@@ -23,11 +20,14 @@
                 [(ngModel)]="password"
                 required >
             <label for="password">Hasło</label>
-            @if(isPasswordIncorrect){
-                <p class="text-danger"></p>
-            }
+            
         </div>
-        <input type="submit" value="Zarejestruj">
+        <input type="submit" value="Zarejestruj" routerLink="/register" routerLinkActive="active">
+        @if(hasError){
+            <p class="error-message">
+                Podany adres email już istnieje
+            </p>
+        }
         <div class="user-login">
             <a routerLink="/login">Zaloguj się do swojego konta</a>
         </div>
