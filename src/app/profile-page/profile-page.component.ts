@@ -30,7 +30,7 @@ export class ProfilePageComponent implements OnInit{
       const userId = localStorage.getItem('userId');
       if(userId){
         const params = new HttpParams().set('userkey', userId);
-        this.http.get<{ orders: Order[] }>('http://apache-php:8080/api/orders', { params })
+        this.http.get<{ orders: Order[] }>('http://localhost:8080/api/orders', { params })
           .subscribe({
             next: (response) => {
               this.Orders = response.orders.map(order => ({
