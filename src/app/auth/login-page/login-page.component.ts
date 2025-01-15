@@ -24,11 +24,12 @@ export class LoginPageComponent {
       email: this.username,
       password: this.password
     }
-    this.http.post<{ message: string, userId: string }>('http://localhost:8080/api/login', payload)
+    this.http.post<{ message: string, userId: string, userHash: string }>('http://localhost:8080/api/login', payload)
       .subscribe({
         next: (response) =>{
           localStorage.setItem('authToken',response.message);
           localStorage.setItem('userId',response.userId.toString());
+          localStorage.setItem('userHash', response.userHash)
           this.router.navigate(['/profile']);
         },
         error: (error) => {

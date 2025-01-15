@@ -28,8 +28,11 @@ export class ProfilePageComponent implements OnInit{
   ngOnInit(): void {
     if(typeof window !== 'undefined'){
       const userId = localStorage.getItem('userId');
-      if(userId){
-        const params = new HttpParams().set('userkey', userId);
+      const userHash = localStorage.getItem('userHash');
+      if(userId && userHash){
+        const params = new HttpParams()
+        .set('userkey', userId)
+        .set('userHash', userHash);
         this.http.get<{ orders: Order[] }>('http://localhost:8080/api/orders', { params })
           .subscribe({
             next: (response) => {

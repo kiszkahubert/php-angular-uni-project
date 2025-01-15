@@ -52,7 +52,6 @@ export class BasketPageComponent implements OnInit {
       ...order,
       userkey: userId
     }));
-    
     this.http.post<{ message: string }>('http://localhost:8080/api/orders', orderData)
       .subscribe({
         next: (response) => {
